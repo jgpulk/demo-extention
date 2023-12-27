@@ -16,7 +16,15 @@ $(function(){
     })
 
     $('#resetData').click(function(){
-        chrome.storage.sync.set({'total': 0, 'limit': 0})
-        close()
+        chrome.storage.sync.remove(['total', 'limit'], function(){
+            var resetNotificationOptions = {
+                type: 'basic',
+                iconUrl: 'images/icon48.png',
+                title: 'Values reseted!',
+                message: 'Your values have been reset to their default settings.'
+            }
+            $('#limit').val('')
+            chrome.notifications.create('resetNotification', resetNotificationOptions)
+        });
     })
 });
