@@ -1,7 +1,8 @@
 $(function(){
-    chrome.storage.sync.get('total', function(result){
-        if(result.total){
-            $('#total').text(result.total)
+    chrome.storage.sync.get(['total', 'limit'], function(result){
+        if(result){
+            $('#total').text(result.total || 0)
+            $('#limit').text(result.limit || 0)
         }
     })
 
