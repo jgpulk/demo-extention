@@ -34,3 +34,11 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
         }
     }
 })
+
+chrome.storage.onChanged.addListener(function(changes, storageName){
+    if(changes.total.newValue){
+        chrome.browserAction.setBadgeText({text: changes.total.newValue.toString()})
+    } else{
+        chrome.browserAction.setBadgeText({text: ''})
+    }
+})
